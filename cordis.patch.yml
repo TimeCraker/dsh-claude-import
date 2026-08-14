@@ -1,0 +1,7 @@
+# dsh-claude-import bundle patch：在 profile 组合中挂载本插件的一个 Loader 行。
+# 经由 `dsh plugin --profile <name> add dsh-claude-import` 安装时，该行随
+# bundle 层自动进入组合；也可以把同样内容写进 profile 自己的 cordis.patch.yml
+# （用户补丁层支持热重载，改动立即生效，无需重启）。
+- insert:
+    - id: claude-import
+      name: dsh-claude-import
