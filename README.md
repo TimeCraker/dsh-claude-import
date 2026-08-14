@@ -1,5 +1,7 @@
 # dsh-claude-import
 
+<img src="docs/social-preview.png" alt="dsh-claude-import — Import Claude Code config into DeepSeek Harness" width="1280" />
+
 把 Claude Code 的配置资产一键导入 DeepSeek Harness（DSH）：在设置页「插件 → 插件配置」提供
 「导入 Claude 配置」卡片，勾选要导入的资产，选择用户级或项目工作区，预览落点与冲突，
 逐项选择冲突策略后导入。重复导入幂等，不产生重复条目。
