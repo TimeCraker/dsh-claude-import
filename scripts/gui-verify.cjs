@@ -92,6 +92,47 @@ const URL = "http://127.0.0.1:3080/";
       els.map((e) => e.textContent.trim().replace(/\s+/g, " ").slice(0, 140)).slice(0, 20));
     console.log("DONE PHASE:", JSON.stringify(doneTexts, null, 2));
   }
+  if (step === "scan") {
+    // 设置 → 插件 → 打开 modal → 检查勾选行计数与展开明细
+    await page.evaluate(() => {
+      const btn = [...document.querySelectorAll("button, a")].find((e) => /^设置$/.test(e.textContent.trim()));
+      if (btn) btn.click();
+    });
+    await page.waitForTimeout(2500);
+    await page.evaluate(() => {
+      const btn = [...document.querySelectorAll("button, a")].find((e) => /^插件$/.test(e.textContent.trim()));
+      if (btn) btn.click();
+    });
+    await page.waitForTimeout(2000);
+    await page.evaluate(() => {
+      const btn = [...document.querySelectorAll("button")].find((e) => e.textContent.includes("导入 Claude 配置"));
+      if (btn) btn.click();
+    });
+    await page.waitForTimeout(3500);
+    const rows = await page.$$eval("li.clci-check-row", (els) =>
+      els.map((e) => ({
+        label: e.querySelector("label span")?.textContent.trim(),
+        count: e.querySelector("[class*=clci-count]")?.textContent.trim(),
+        hasExpand: e.querySelector("[class*=clci-expand]") !== null,
+      })));
+    console.log("CHECK ROWS:", JSON.stringify(rows, null, 2));
+    // 展开 Skills 行
+    const expandClicked = await page.evaluate(() => {
+      const rows = [...document.querySelectorAll("li.clci-check-row")];
+      const skills = rows.find((e) => e.textContent.includes("Skills"));
+      const btn = skills?.querySelector("[class*=clci-expand]");
+      if (!btn) return false;
+      btn.click();
+      return true;
+    });
+    console.log("expand skills:", expandClicked);
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: "shot-scan.png", fullPage: false });
+    const scanItems = await page.$$eval("li.clci-scan-item", (els) =>
+      els.map((e) => e.textContent.trim().replace(/\s+/g, " ").slice(0, 130)));
+    console.log("SCAN ITEMS:", JSON.stringify(scanItems, null, 2));
+  }
+
   if (step === "conflict") {
     // 设置 → 插件 → modal → 预览 → 把 e2e-gui-skill 的策略改为“覆盖” → 开始导入
     await page.evaluate(() => {
