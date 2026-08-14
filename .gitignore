@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 
 *.png
+!docs/social-preview.png
