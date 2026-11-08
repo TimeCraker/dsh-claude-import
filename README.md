@@ -1,10 +1,25 @@
-# dsh-claude-import
+<div align="center">
 
-<img src="docs/social-preview.png" alt="dsh-claude-import — Import Claude Code config into DeepSeek Harness" width="1280" />
+# 🔄 dsh-claude-import
 
-把 Claude Code 的配置资产一键导入 DeepSeek Harness（DSH）：在设置页「插件 → 插件配置」提供
-「导入 Claude 配置」卡片，勾选要导入的资产，选择用户级或项目工作区，预览落点与冲突，
-逐项选择冲突策略后导入。重复导入幂等，不产生重复条目。
+**把 Claude Code 的配置资产一键无缝迁移至 DeepSeek Harness (DSH)**  
+*Import Claude Code configs (skills / rules / commands / prompts) into DeepSeek Harness with conflict preview*
+
+<img src="docs/social-preview.png" alt="dsh-claude-import — Import Claude Code config into DeepSeek Harness" width="1080" />
+
+<br/>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Target: DeepSeek Harness](https://img.shields.io/badge/Target-DeepSeek%20Harness%20Plugin-2D5A88.svg?style=flat-square)](https://github.com/TimeCraker/dsh-claude-import)
+[![Migration: Zero Data Loss](https://img.shields.io/badge/Migration-Idempotent%20%7C%20Safe-3A7D44.svg?style=flat-square)](#功能)
+
+<br/>
+
+> 在 DSH 设置页「插件 → 插件配置」提供「导入 Claude 配置」卡片，勾选要导入的资产，选择用户级或项目工作区，预览落点与冲突，逐项选择冲突策略后安全导入。
+
+</div>
+
+---
 
 ## 功能
 
